@@ -100,4 +100,32 @@
     main aside {
         display: none;
     }
+
+    #page_footer {
+        /*grid-row: 3/4;*/
+        /*grid-column: 1/2;*/
+
+        display: block;
+        min-height: 120px;
+        padding: 10px 0;
+        align-content: center;
+        justify-items: center;
+        background-color: rgb(156, 156, 156);
+    }
+
+    #page_footer section {
+        height: 100%;
+        /*background-color: lightgray;*/
+        align-content: center;
+        justify-content: center;
+    }
+
+    #page_footer h2{
+        font-size: 22px;
+        font-weight: normal;
+    }
+
+    #page_footer > nav {
+        display: none;
+    }
 }
