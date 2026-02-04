@@ -66,6 +66,24 @@
         width: 40px;
     }
 
+    #burger_menu::before,
+    #burger_menu::after {
+        background: #000;
+        content: "";
+        display: block;
+        height: 2px;
+        position: absolute;
+        width: 100%;
+    }
+
+    #burger_menu::before {
+        top: 0;
+    }
+
+    #burger_menu::after {
+        bottom: 0;
+    }
+
     main {
         /*grid-row: 2/3;*/
         /*grid-column: 1/2;*/
