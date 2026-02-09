@@ -1,0 +1,22 @@
+{
+  "name": "civ-web-technologies-portfolio-phases",
+  "version": "1.0.0",
+  "description": "Web Tech Assessment Repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NM-TAFE/civ-web-technologies-portfolio-phases.git"
+  },
+  "author": "John Robertson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NM-TAFE/civ-web-technologies-portfolio-phases/issues"
+  },
+  "homepage": "https://github.com/NM-TAFE/civ-web-technologies-portfolio-phases#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.17"
+  }
+}
