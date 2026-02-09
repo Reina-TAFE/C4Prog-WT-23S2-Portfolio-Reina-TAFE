@@ -1,0 +1,29 @@
+name: Lint Phases JS
+
+on:
+  push:
+    paths:
+      - '**.js'
+  pull_request:
+    paths:
+      - '**.js'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npx eslint "**/*.js"
+
