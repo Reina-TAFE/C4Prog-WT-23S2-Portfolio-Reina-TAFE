@@ -28,7 +28,7 @@ export default defineConfig([
         files: ["**/*.html"],
         plugins: {html,},
         extends: ["html/recommended"],
-        language: html/html,
+        language: "html/html",
         rules: {
             "html/no-inline-styles": "warn",
             "html/require-closing-tags": "error",
