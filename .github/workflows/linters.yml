@@ -1,0 +1,38 @@
+name: Lint Phases HTML/CSS/JS
+
+on:
+  push:
+    paths:
+      - '**.js'
+      - '**.html'
+      - '**.css'
+  pull_request:
+    paths:
+      - '**.js'
+      - '**.html'
+      - '**.css'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Install html-ESLint
+        run: npm install -D @html-eslint/eslint-plugin
+      
+      - name: Install @eslint/css
+        run: npm install @eslint/css -D
+
+      - name: Run ESLint
+        run: npx eslint .
