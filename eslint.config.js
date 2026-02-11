@@ -20,7 +20,6 @@ export default defineConfig([
             'eqeqeq': 'error',
             'curly': 'error',
             'semi': ['error', 'always'],
-            'quotes': ['error', 'single']
         }
     },
 
