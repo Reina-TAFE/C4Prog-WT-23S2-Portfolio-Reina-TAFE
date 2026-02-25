@@ -94,6 +94,7 @@ async function SubmitButtonPressed(){
     const apiOptions = document.getElementsByName("api_option");
     let selectedApi = null;
     let url = null;
+    const regex = /^[A-Za-z0-9\s]*$/;
     for (let i = 0; i < apiOptions.length; i++) {
         if(apiOptions[i].checked){
             selectedApi = apiOptions[i].id;
@@ -103,8 +104,14 @@ async function SubmitButtonPressed(){
     if(selectedApi === "cocktail_box"){
         let name = document.getElementById("api_input").value;
         if (name !== "") {
-            url = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+            if (regex.test(name) === true) {
+                url = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+            } else {
+                displayApiError("Error! Invalid Cocktail Name! (a-z, 1-9)")
+                return
+            }
         } else {
+            // if no cocktail name is given, default to cosmopolitan
             url = "https://api.api-ninjas.com/v1/cocktail?name=cosmopolitan";
         }
         await CallApi(url, "cocktail");
@@ -112,12 +119,27 @@ async function SubmitButtonPressed(){
     } else if(selectedApi === "recipe_box"){
         let title = document.getElementById("api_input").value;
         if (title !== ""){
-            url = `https://api.api-ninjas.com/v2/recipe?title=${title}`;
+            if (regex.test(title) === true) {
+                url = `https://api.api-ninjas.com/v2/recipe?title=${title}`;
+            } else {
+                displayApiError("Error! Invalid Recipe Name! (a-z, 1-9)")
+                return
+            }
         } else {
+            // if no recipe name is given, default to spaghetti
             url = "https://api.api-ninjas.com/v2/recipe?title=spaghetti";
         }
         await CallApi(url, "recipe");
     }
+}
+
+function displayApiError(message){
+    resetResults();
+    const resultsBox = document.getElementById("api_results");
+    const errorMessage = document.createElement("h4");
+    errorMessage.textContent = message;
+    errorMessage.className = "errorMessage";
+    resultsBox.appendChild(errorMessage);
 }
 
 function changeSelection(activeButton){
@@ -169,6 +191,7 @@ function init() {
         e.preventDefault();
         // Perform functionality
         resetResults();
+        document.getElementById("api_input").value = "";
     });
 
 }

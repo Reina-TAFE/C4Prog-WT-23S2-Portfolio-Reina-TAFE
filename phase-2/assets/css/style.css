@@ -41,6 +41,8 @@
         align-items: center;
         padding: 10px 5px;
         background-color: rgb(208, 130, 61);
+        border: 1px black;
+        border-bottom-style: solid;
     }
 
     .sticker-header {
@@ -116,6 +118,8 @@
     .main-article header {
         padding: 10px 0;
         background-color: rgb(232, 180, 121);
+        border: 1px black;
+        border-bottom-style: solid;
     }
 
     .main-article img{
@@ -179,6 +183,10 @@
         font-size: 26px;
     }
 
+    .api-form #api_input_label{
+        display: block;
+    }
+
     .api-form #api_results ul {
         width: fit-content;
         height: fit-content;
@@ -214,11 +222,15 @@
         width: 20px;
     }
 
-    .api-form #submit_button {
+    .api-form #api_buttons_list {
+        justify-content: center;
+    }
+
+    .api-form .api_button {
         margin: 5px;
         padding: 5px;
         background-color: lawngreen;
-        box-shadow: black 1px 1px 3px;
+        box-shadow: inset #61c700c9 0 0 0 2px;
     }
 
     .instructionsList {
@@ -288,6 +300,8 @@
         row-gap: 10px;
         background-color: rgb(208, 130, 61);
         padding: 10px;
+        border: 1px black;
+        border-bottom-style: solid;
     }
 
     #page_header #logo {
@@ -475,7 +489,7 @@
     }
 
     article footer {
-        grid-row: -1/0;
+        grid-row: auto;
     }
 
     article h2 {
@@ -614,4 +628,9 @@
 
 .hidden {
     display: none;
+}
+
+.errorMessage {
+    font-size: 16px !important;
+    color: red;
 }
