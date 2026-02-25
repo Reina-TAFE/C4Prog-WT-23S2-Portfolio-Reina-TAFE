@@ -66,6 +66,38 @@
                     </footer>
                 </article>
                 <article id="article_3" class="main-article">
+                    <form id="app-form" class="api-form">
+                        <section>
+                            <h2>Ninja API App</h2>
+                            <ul id="api_list">
+                                <li>
+                                    <input type="checkbox" id="cocktail_box" name="api_option">
+                                    <label for="cocktail_box">Cocktail</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="recipe_box" name="api_option">
+                                    <label for="recipe_box">Recipe</label>
+                                </li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h3 class="hidden">Inputs</h3>
+                            <label for="api_input" id="api_input_label"></label>
+                            <input type="text" id="api_input">
+                            <ul id="api_buttons_list">
+                                <li>
+                                    <button id="submit_button" class="api_button">Get Response</button>
+                                </li>
+                                <li>
+                                    <button id="clear_button" class="api_button">Clear</button>
+                                </li>
+                            </ul>
+                        </section>
+                        <section id="api_results">
+                            <h3>Results</h3>
+                        </section>
+                    </form>
+                    <br>
                     <header>
                         <h2>THAT'S MY LECTURE</h2>
                     </header>
@@ -223,5 +255,6 @@
                 </section>
             </footer>
         </div>
+        <script src="assets/js/api-manager.js"></script>
     </body>
 </html>

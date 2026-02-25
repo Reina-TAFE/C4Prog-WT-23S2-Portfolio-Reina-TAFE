@@ -15,7 +15,7 @@
 
     #wrapper {
         max-width: 100%;
-        height: 100vh; /*veiw height*/
+        height: 100vh; /*view height*/
         width: 100%;
         margin: 0 auto;
         background-color: rgb(221, 233, 255);
@@ -144,6 +144,95 @@
         font-size: 28px;
     }
 
+    .main-article .api-form {
+        height: fit-content;
+        width: 100%;
+        padding: 5px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .api-form section {
+        display: block;
+        width: 100%;
+        height: fit-content;
+        background-color: rgb(254, 234, 209);
+        box-shadow: black 3px 3px 3px;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .api-form ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style: none;
+    }
+
+    .api-form li,
+    .api-form li label,
+    .api-form section button,
+    .api-form #api_input_label{
+        font-size: 26px;
+    }
+
+    .api-form #api_results ul {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-items: left;
+        text-align: left;
+        list-style: none;
+    }
+
+    .api-form h3 {
+        padding-bottom: 10px;
+        font-size: 28px;
+    }
+    .api-form h4 {
+        padding-bottom: 10px;
+        font-size: 30px;
+    }
+
+    .api-form h5 {
+        padding-bottom: 10px;
+        font-size: 28px;
+    }
+
+    .api-form #api_input {
+        padding: 5px;
+        margin: 5px;
+        font-size: 28px;
+    }
+
+    input[name="api_option"]{
+        height: 20px;
+        width: 20px;
+    }
+
+    .api-form #submit_button {
+        margin: 5px;
+        padding: 5px;
+        background-color: lawngreen;
+        box-shadow: black 1px 1px 3px;
+    }
+
+    .instructionsList {
+        width: auto;
+        height: fit-content;
+        text-align: left;
+        text-indent: -28px;
+        padding-left: 28px;
+        display: flex;
+        flex-direction: column;
+        list-style-type: decimal;
+        list-style-position: inside;
+    }
+
     main aside {
         display: none;
     }
@@ -258,7 +347,7 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: repeat(2, minmax(300px, auto));
-        grid-template-columns: repeat(2, 1fr) 400px;
+        grid-template-columns: repeat(2, 1fr) 0.75fr;
     }
 
     .main-article {
@@ -267,7 +356,7 @@
         border: black 1px solid;
         margin: 10px;
         display: grid;
-        grid-template-rows: 50px auto auto;
+        grid-template-rows: auto auto auto;
         grid-template-columns: 1fr;
         background-color: rgb(241, 206, 154);
     }
@@ -288,9 +377,101 @@
         margin: 0 auto;
     }
 
+    .api-form {
+        border: 1px black;
+        /*border-top-style: solid;*/
+        border-bottom-style: solid;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .api-form section {
+        display: block;
+        width: 100%;
+        height: fit-content;
+        background-color: rgb(254, 234, 209);
+        padding: 5px;
+        text-align: center;
+    }
+
+    .api-form ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style: none;
+    }
+
+    .api-form #api_results ul {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-items: left;
+        text-align: left;
+        list-style: none;
+    }
+
+    .api-form h3 {
+        padding-bottom: 10px;
+        font-size: 22px;
+    }
+
+    .api-form h4 {
+        padding-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .api-form h5 {
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .api-form li,
+    .api-form li label,
+    .api-form section button,
+    .api-form #api_input_label{
+        font-size: 14px;
+    }
+
+    .api-form #api_input_label{
+        display: block;
+    }
+
+    .api-form #api_input {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .api-form #api_buttons_list {
+        justify-content: center;
+    }
+
+    .api-form .api_button {
+        margin: 5px;
+        padding: 5px;
+        background-color: lawngreen;
+        box-shadow: inset #61c700c9 0 0 0 2px;
+    }
+
+    .instructionsList {
+        width: auto;
+        height: fit-content;
+        text-align: left;
+        text-indent: -28px;
+        padding-left: 28px;
+        display: flex;
+        flex-direction: column;
+        list-style-type: decimal;
+        list-style-position: inside;
+    }
+
     article header {
         grid-row: 1/2;
         background-color: rgb(232, 180, 121);
+        border: 1px black;
+        border-bottom-style: solid;
     }
 
     article footer {
@@ -375,6 +556,8 @@
         width: 100%;
         height: 15%;
         background-color: rgb(232, 180, 121);
+        border: 1px black;
+        border-bottom-style: solid;
     }
 
     .aside-section p {
@@ -427,4 +610,8 @@
         justify-content: center;
     }
 
+}
+
+.hidden {
+    display: none;
 }
