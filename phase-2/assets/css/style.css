@@ -389,6 +389,16 @@
         list-style: none;
     }
 
+    .api-form #api_results ul {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-items: left;
+        text-align: left;
+        list-style: none;
+    }
+
     .api-form h3 {
         padding-bottom: 10px;
         font-size: 22px;
