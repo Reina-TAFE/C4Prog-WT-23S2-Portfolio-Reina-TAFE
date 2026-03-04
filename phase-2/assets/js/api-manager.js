@@ -1,7 +1,50 @@
 /*jshint esversion: 8 */
 // Reina Rowlands 20066312
 
-//
+async function SubmitButtonPressed(){
+    const apiOptions = document.getElementsByName("api_option");
+    let selectedApi = null;
+    let url = null;
+    const regex = /^[A-Za-z0-9\s]*$/;
+    for (let i = 0; i < apiOptions.length; i++) {
+        if (apiOptions[i].checked) {
+            selectedApi = apiOptions[i].id;
+        }
+    }
+    // Call selected API
+    if(selectedApi === "cocktail_box"){
+        let name = document.getElementById("api_input").value;
+        if (name !== "") {
+            if (regex.test(name) === true) {
+                url = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+            } else {
+                pass(); // update results section api error msg
+                return;
+            }
+        } else {
+            // if no cocktail name is given, default to cosmopolitan
+            url = "https://api.api-ninjas.com/v1/cocktail?name=cosmopolitan";
+        }
+        await asyncPass(); // call cocktail api here
+
+    } else if(selectedApi === "recipe_box"){
+        let title = document.getElementById("api_input").value;
+        if (title !== ""){
+            if (regex.test(title) === true) {
+                url = `https://api.api-ninjas.com/v2/recipe?title=${title}`;
+            } else {
+                pass(); // update results section api error msg
+                return;
+            }
+        } else {
+            // if no recipe name is given, default to spaghetti
+            url = "https://api.api-ninjas.com/v2/recipe?title=spaghetti";
+        }
+        await asyncPass(); // call recipe api here
+    }
+}
+
+// unselect previous option (checkbox) when new api option is selected
 function changeSelection(activeButton){
     const apiOptions = document.getElementsByName("api_option");
     const inputLabel = document.getElementById("api_input_label");
@@ -45,7 +88,7 @@ function init() {
         // Prevent page from reloading
         e.preventDefault();
         // Perform functionality
-        pass();
+        await SubmitButtonPressed();
     });
     document.getElementById("clear_button").addEventListener("click", (e) => {
         // Prevent page from reloading
@@ -58,6 +101,10 @@ function init() {
 
 // Placeholder function to be replaced by functionality later
 function pass(){
+    return true;
+}
+
+async function asyncPass(){
     return true;
 }
 
