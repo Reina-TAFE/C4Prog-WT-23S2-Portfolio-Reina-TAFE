@@ -279,6 +279,34 @@
         font-size: 24px;
     }
 
+    .main-article .api-form {
+        height: fit-content;
+        width: 100%;
+        padding: 5px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .api-form section {
+        display: block;
+        width: 100%;
+        height: fit-content;
+        background-color: rgb(254, 234, 209);
+        box-shadow: black 3px 3px 3px;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .api-form ul {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style: none;
+    }
+
     .main-article img, .aside-section img {
         display: block;
         height: fit-content;
