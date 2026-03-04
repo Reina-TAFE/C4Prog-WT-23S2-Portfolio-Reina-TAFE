@@ -1,46 +1,44 @@
 /*jshint esversion: 8 */
 // Reina Rowlands 20066312
 
+const recipeApi = new Api("Recipe", "https://api.api-ninjas.com/v2/recipe?title=",
+    null, "spaghetti");
+const cocktailApi = new Api("Cocktail", "https://api.api-ninjas.com/v1/cocktail?name=",
+    null, "cosmopolitan");
+
 async function SubmitButtonPressed(){
     const apiOptions = document.getElementsByName("api_option");
+    let selectedApiOption = null;
     let selectedApi = null;
-    let url = null;
     const regex = /^[A-Za-z0-9\s]*$/;
     for (let i = 0; i < apiOptions.length; i++) {
         if (apiOptions[i].checked) {
-            selectedApi = apiOptions[i].id;
+            selectedApiOption = apiOptions[i].id;
         }
     }
     // Call selected API
-    if(selectedApi === "cocktail_box"){
+    if(selectedApiOption === "cocktail_box"){
+        selectedApi = cocktailApi;
+    } else if(selectedApiOption === "recipe_box") {
+        selectedApi = recipeApi;
+    }
+    if (selectedApi === null) {
+        pass();
+    } else if (selectedApi != null){
         let name = document.getElementById("api_input").value;
         if (name !== "") {
             if (regex.test(name) === true) {
-                url = `https://api.api-ninjas.com/v1/cocktail?name=${name}`;
+                selectedApi.searchParameter = name;
             } else {
-                pass(); // update results section api error msg
+                selectedApi.apiError = `Error! Invalid ${selectedApi.apiName} Name! (a-z, 1-9)`; // update results section api error msg
                 return;
             }
         } else {
-            // if no cocktail name is given, default to cosmopolitan
-            url = "https://api.api-ninjas.com/v1/cocktail?name=cosmopolitan";
+            // if no cocktail name is given, set searchParameter to api default
+            selectedApi.searchParameter = selectedApi.defaultSearch;
         }
-        await asyncPass(); // call cocktail api here
-
-    } else if(selectedApi === "recipe_box"){
-        let title = document.getElementById("api_input").value;
-        if (title !== ""){
-            if (regex.test(title) === true) {
-                url = `https://api.api-ninjas.com/v2/recipe?title=${title}`;
-            } else {
-                pass(); // update results section api error msg
-                return;
-            }
-        } else {
-            // if no recipe name is given, default to spaghetti
-            url = "https://api.api-ninjas.com/v2/recipe?title=spaghetti";
-        }
-        await asyncPass(); // call recipe api here
+        await selectedApi.callApi(); // call cocktail api here
+        // pass selected api to display function
     }
 }
 
@@ -77,6 +75,7 @@ function resetResults(){
 
 function init() {
     'use strict';
+
     // Add event listeners to buttons
     document.getElementById("cocktail_box").addEventListener("click", (event) =>{
         changeSelection(event.target);
@@ -95,7 +94,7 @@ function init() {
         e.preventDefault();
         // Perform functionality
         resetResults();
-        document.getElementById("api_input").value = "";;
+        document.getElementById("api_input").value = "";
     });
 }
 
