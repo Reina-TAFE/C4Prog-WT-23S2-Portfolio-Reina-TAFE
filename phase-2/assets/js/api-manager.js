@@ -1,5 +1,6 @@
 /*jshint esversion: 8 */
 // Reina Rowlands 20066312
+import {Api} from './api.js';
 
 const recipeApi = new Api("Recipe", "https://api.api-ninjas.com/v2/recipe?title=",
     null, "spaghetti");
@@ -19,7 +20,7 @@ let selectedApi = new Api();
 //     }
 // };
 
-function displayError(api = null){
+export function displayError(api = null){
     resetResults();
     if (api === null){
         api = selectedApi;
@@ -35,7 +36,7 @@ function displayError(api = null){
     }
 }
 
-function updateResults(api){
+export function updateResults(api){
     resetResults();
     const resultsBox = document.getElementById("api_results");
     // Check if no error has occurred
@@ -182,8 +183,8 @@ function pass(){
     return true;
 }
 
-async function asyncPass(){
-    return true;
-}
+// async function asyncPass(){
+//     return true;
+// }
 
 window.onload= init;

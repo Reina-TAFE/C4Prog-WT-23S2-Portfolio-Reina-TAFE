@@ -1,9 +1,10 @@
 /*jshint esversion: 8 */
 // Reina Rowlands 20066312
+import {updateResults, displayError} from './api-manager.js';
 
 
 
-class Api {
+export class Api {
     constructor(name = null, baseURL = null, searchParameter = null, defaultSearch = null) {
         this.apiName = name;
         this.baseUrl = baseURL
