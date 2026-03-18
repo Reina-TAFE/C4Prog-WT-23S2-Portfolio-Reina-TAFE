@@ -179,6 +179,16 @@
         font-size: 26px;
     }
 
+    .api-form #api_results ul {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-items: left;
+        text-align: left;
+        list-style: none;
+    }
+
     .api-form #api_input_label{
         display: block;
     }
@@ -217,6 +227,18 @@
         padding: 5px;
         background-color: lawngreen;
         box-shadow: inset #61c700c9 0 0 0 2px;
+    }
+
+    .instructionsList {
+        width: auto;
+        height: fit-content;
+        text-align: left;
+        text-indent: -28px;
+        padding-left: 28px;
+        display: flex;
+        flex-direction: column;
+        list-style-type: decimal;
+        list-style-position: inside;
     }
 
     main aside {
@@ -258,7 +280,6 @@
         max-width: 100%;
         margin: 0 auto;
         background-color: rgb(221, 233, 255);
-
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -441,6 +462,18 @@
         box-shadow: inset #61c700c9 0 0 0 2px;
     }
 
+    .instructionsList {
+        width: auto;
+        height: fit-content;
+        text-align: left;
+        text-indent: -28px;
+        padding-left: 28px;
+        display: flex;
+        flex-direction: column;
+        list-style-type: decimal;
+        list-style-position: inside;
+    }
+
     article header {
         grid-row: 1/2;
         background-color: rgb(232, 180, 121);
@@ -580,4 +613,18 @@
         justify-content: center;
     }
 
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.show-servings {
+    display: block;
+    font-weight: bold;
+    text-align: left;
 }
