@@ -1,14 +1,45 @@
 /*jshint esversion: 8 */
 // Reina Rowlands 20066312
 
+
+
 class Api {
-    constructor(name, baseURL, searchParameter, defaultSearch) {
+    constructor(name = null, baseURL = null, searchParameter = null, defaultSearch = null) {
         this.apiName = name;
         this.baseUrl = baseURL
         this.searchParameter = searchParameter;
         this.defaultSearch = defaultSearch;
-        this.responseData = null;
-        this.apiError = null;
+        this._responseData = null;
+        this._apiError = null;
+
+        // return new Proxy(this, handler);
+    }
+
+    get responseData(){
+        return this._responseData;
+    }
+
+    // Send response data to updateResults() function when value is changed
+    set responseData(newValue){
+        const oldValue = this._responseData
+        this._responseData = newValue;
+
+        if(oldValue !== newValue && newValue !== null){
+            updateResults(this)
+        }
+    }
+
+    get apiError(){
+        return this._apiError
+    }
+
+    set apiError(newValue){
+        const oldValue = this._apiError
+        this._apiError = newValue
+
+        if(oldValue !== newValue && newValue !== null){
+            displayError(this)
+        }
     }
 
     async callApi(){
@@ -21,6 +52,7 @@ class Api {
             })
                 .then(response => {
                     if (!response.ok) {
+                        this.responseData = null;
                         throw new Error(`HTTP Error! status: ${response.status}`);
                     }
                     return response.json();
