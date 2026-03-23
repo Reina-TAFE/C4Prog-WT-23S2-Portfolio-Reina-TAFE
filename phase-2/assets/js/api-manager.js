@@ -26,7 +26,7 @@ export function displayError(api = null){
         api = selectedApi;
     }
     if(api.apiError !== null){
-        const resultsBox = document.getElementById("api_results")
+        const resultsBox = document.getElementById("api_results");
         const errorTitle = document.createElement("h4");
         errorTitle.style.textTransform = "capitalize";
         errorTitle.style.color = "red";
@@ -60,7 +60,7 @@ export function updateResults(api){
         instructionsList.className = "instructionsList";
         resultsBox.appendChild(instructionsList);
         // Apply data for API-specific elements
-        const data = api.responseData
+        const data = api.responseData;
         if (api.apiName === "Cocktail"){
             name.textContent = data.name;
             servings.className = "hidden";
@@ -103,7 +103,7 @@ async function SubmitButtonPressed(){
     }
     if (selectedApi.apiName === null) {
         pass();
-    } else if (selectedApi.apiName != null){
+    } else if (selectedApi.apiName !== null){
         let name = document.getElementById("api_input").value;
         if (name !== "") {
             if (regex.test(name) === true) {

@@ -7,7 +7,7 @@ import {updateResults, displayError} from './api-manager.js';
 export class Api {
     constructor(name = null, baseURL = null, searchParameter = null, defaultSearch = null) {
         this.apiName = name;
-        this.baseUrl = baseURL
+        this.baseUrl = baseURL;
         this.searchParameter = searchParameter;
         this.defaultSearch = defaultSearch;
         this._responseData = null;
@@ -22,24 +22,24 @@ export class Api {
 
     // Send response data to updateResults() function when value is changed
     set responseData(newValue){
-        const oldValue = this._responseData
+        const oldValue = this._responseData;
         this._responseData = newValue;
 
         if(oldValue !== newValue && newValue !== null){
-            updateResults(this)
+            updateResults(this);
         }
     }
 
     get apiError(){
-        return this._apiError
+        return this._apiError;
     }
 
     set apiError(newValue){
-        const oldValue = this._apiError
-        this._apiError = newValue
+        const oldValue = this._apiError;
+        this._apiError = newValue;
 
         if(oldValue !== newValue && newValue !== null){
-            displayError(this)
+            displayError(this);
         }
     }
 
@@ -62,7 +62,7 @@ export class Api {
                     console.log(data);
                     if(data.length > 0){
                         this.apiError = null;
-                        this.responseData = data[0] // update results section with api result here
+                        this.responseData = data[0]; // update results section with api result here
                     }
                     else{
                         let errorString = "Error: No results Found.";
