@@ -45,37 +45,40 @@ export class Api {
 
     async callApi(){
         try {
-            let url = `${this.baseUrl}${this.searchParameter}`;
+            if(this.baseUrl !== null){
 
-            await fetch(url, {
-                method: 'GET',
-                headers: {'X-Api-Key': 'WiDFwO870fMNxyjVTmqnwA==NAJuzdVok4VbZqPm'}
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        this.responseData = null;
-                        throw new Error(`HTTP Error! status: ${response.status}`);
-                    }
-                    return response.json();
+                let url = `${this.baseUrl}${this.searchParameter}`;
+
+                await fetch(url, {
+                    method: 'GET',
+                    headers: {'X-Api-Key': 'WiDFwO870fMNxyjVTmqnwA==NAJuzdVok4VbZqPm'}
                 })
-                .then((data) => {
-                    console.log(data);
-                    if(data.length > 0){
-                        this.apiError = null;
-                        this.responseData = data[0]; // update results section with api result here
-                    }
-                    else{
-                        let errorString = "Error: No results Found.";
+                    .then(response => {
+                        if (!response.ok) {
+                            this.responseData = null;
+                            throw new Error(`HTTP Error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        if(data.length > 0){
+                            this.apiError = null;
+                            this.responseData = data[0]; // update results section with api result here
+                        }
+                        else{
+                            let errorString = "Error: No results Found.";
+                            console.error(errorString);
+                            this.apiError = errorString; // update results section with error message here
+                        }
+                        // return data;
+                    })
+                    .catch(error => {
+                        let errorString = `Error with fetch operation: ${error}`;
                         console.error(errorString);
                         this.apiError = errorString; // update results section with error message here
-                    }
-                    // return data;
-                })
-                .catch(error => {
-                    let errorString = `Error with fetch operation: ${error}`;
-                    console.error(errorString);
-                    this.apiError = errorString; // update results section with error message here
-                });
+                    });
+            }
         }
         catch(error) {
             console.error(error);

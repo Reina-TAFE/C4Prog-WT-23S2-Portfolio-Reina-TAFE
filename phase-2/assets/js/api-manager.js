@@ -6,7 +6,8 @@ const recipeApi = new Api("Recipe", "https://api.api-ninjas.com/v2/recipe?title=
     null, "spaghetti");
 const cocktailApi = new Api("Cocktail", "https://api.api-ninjas.com/v1/cocktail?name=",
     null, "cosmopolitan");
-let selectedApi = new Api();
+const nullApi = new Api(); // default api with no name or url
+let selectedApi = nullApi;
 
 // const handler = {
 //     set: function (target, property, value){
@@ -32,7 +33,12 @@ export function displayError(api = null){
         errorTitle.style.color = "red";
         resultsBox.appendChild(errorTitle);
         const errorMsg = document.createElement("p");
+        errorMsg.style.textAlign = "center";
         resultsBox.appendChild(errorMsg);
+
+        // add text to new elements
+        errorTitle.textContent = "Error!";
+        errorMsg.textContent = api.apiError;
     }
 }
 
@@ -40,7 +46,7 @@ export function updateResults(api){
     resetResults();
     const resultsBox = document.getElementById("api_results");
     // Check if no error has occurred
-    if (api.apiError === null)
+    if (api.apiError === null && api.responseData !== null)
     {
         // Create common elements
         const name = document.createElement("h4");
@@ -100,16 +106,18 @@ async function SubmitButtonPressed(){
         selectedApi = cocktailApi;
     } else if(selectedApiOption === "recipe_box") {
         selectedApi = recipeApi;
+    } else if(selectedApiOption === null){
+        selectedApi = nullApi;
     }
     if (selectedApi.apiName === null) {
-        pass();
-    } else if (selectedApi.apiName !== null){
+        selectedApi.apiError = "Error! No Api selected!";
+    } else {
         let name = document.getElementById("api_input").value;
         if (name !== "") {
             if (regex.test(name) === true) {
                 selectedApi.searchParameter = name;
             } else {
-                selectedApi.apiError = `Error! Invalid ${selectedApi.apiName} Name! (a-z, 1-9)`; // update selectedApi.errorMsg
+                selectedApi.apiError = `Error! Invalid ${selectedApi.apiName} Name! (aA-zZ, 1-9)`; // update selectedApi.errorMsg
                 // results box is automatically updated with error msg when value of selectedApi.errorMsg is changed
                 return;
             }
