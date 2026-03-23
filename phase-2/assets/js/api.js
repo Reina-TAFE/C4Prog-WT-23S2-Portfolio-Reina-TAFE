@@ -13,31 +13,33 @@ export class Api {
         this._apiError = null;
     }
 
+    // getter for _responseData, returns _responseData
     get responseData(){
         return this._responseData;
     }
 
-    // Send response data to updateResults() function when value is changed
+    // Setter for _responseData. Passes self to updateResults() function whenever new _responseData value is set
     set responseData(newValue){
         const oldValue = this._responseData;
         this._responseData = newValue;
 
-        if(oldValue !== newValue && newValue !== null){
-            updateResults(this);
+        if(oldValue !== newValue && newValue !== null){ // don't display results when value is the same or being reset
+            updateResults(this); // pass self for updateResults()
         }
     }
 
+    // getter for _apiError, returns _apiError
     get apiError(){
         return this._apiError;
     }
 
-
+    // Setter for _apiError. Passes self to displayError() function whenever new _apiError value is set
     set apiError(newValue){
         const oldValue = this._apiError;
         this._apiError = newValue;
 
-        if(oldValue !== newValue && newValue !== null){
-            displayError(this);
+        if(oldValue !== newValue && newValue !== null){  // don't display error when value is the same or being reset
+            displayError(this); // pass self to displayError()
         }
     }
 
@@ -45,8 +47,9 @@ export class Api {
         try {
             if(this.baseUrl !== null){
 
-                let url = `${this.baseUrl}${this.searchParameter}`;
+                let url = `${this.baseUrl}${this.searchParameter}`; // add search parameter to url
 
+                // Call Api
                 await fetch(url, {
                     method: 'GET',
                     headers: {'X-Api-Key': 'WiDFwO870fMNxyjVTmqnwA==NAJuzdVok4VbZqPm'}
@@ -56,7 +59,7 @@ export class Api {
                             this.responseData = null;
                             throw new Error(`HTTP Error! status: ${response.status}`);
                         }
-                        return response.json();
+                        return response.json(); // cenvert responce to JSON
                     })
                     .then((data) => {
                         console.log(data);
