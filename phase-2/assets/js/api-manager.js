@@ -11,7 +11,7 @@ let selectedApi = nullApi;
 
 
 export function displayError(api = null){
-    resetResults();
+    resetResults(); // clear results box
     if (api === null){
         api = selectedApi;
     }
@@ -20,10 +20,10 @@ export function displayError(api = null){
         const errorTitle = document.createElement("h4");
         errorTitle.style.textTransform = "capitalize";
         errorTitle.style.color = "red";
-        resultsBox.appendChild(errorTitle);
+        resultsBox.appendChild(errorTitle); // append element to results box
         const errorMsg = document.createElement("p");
         errorMsg.style.textAlign = "center";
-        resultsBox.appendChild(errorMsg);
+        resultsBox.appendChild(errorMsg);  // append element to results box
 
         // add text to new elements
         errorTitle.textContent = "Error!";
@@ -84,7 +84,7 @@ async function SubmitButtonPressed(){
     const apiOptions = document.getElementsByName("api_option");
     let selectedApiOption = null;
     // let selectedApi = null;
-    const regex = /^[A-Za-z0-9\s]*$/;
+    const regex = /^[A-Za-z0-9\s]*$/; // define valid characters for search
     for (let i = 0; i < apiOptions.length; i++) {
         if (apiOptions[i].checked) {
             selectedApiOption = apiOptions[i].id;
@@ -95,17 +95,17 @@ async function SubmitButtonPressed(){
         selectedApi = cocktailApi;
     } else if(selectedApiOption === "recipe_box") {
         selectedApi = recipeApi;
-    } else if(selectedApiOption === null){
+    } else if(selectedApiOption === null){ // if no option select, set selectedApi to nullApi
         selectedApi = nullApi;
     }
-    if (selectedApi.apiName === null) {
+    if (selectedApi.apiName === null) { // if nullApi selected, throw error
         selectedApi.apiError = "Error! No Api selected!";
     } else {
         let name = document.getElementById("api_input").value;
         if (name !== "") {
-            if (regex.test(name) === true) {
+            if (regex.test(name) === true) { // validate user input
                 selectedApi.searchParameter = name;
-            } else {
+            } else { // if user input not valid, throw error
                 selectedApi.apiError = `Error! Invalid ${selectedApi.apiName} Name! (aA-zZ, 1-9)`; // update selectedApi.errorMsg
                 // results box is automatically updated with error msg when value of selectedApi.errorMsg is changed
                 return;
@@ -128,12 +128,13 @@ function changeSelection(activeButton){
         // if checkbox is the selected button, set as checked, else unchecked
         button.checked = button.id === activeButton.id; // returns true if ID is equal to id of selected box, else false
     });
+    // update input label when new api option is selected
     if(activeButton.id === "cocktail_box"){
         inputLabel.innerHTML = "Cocktail Name:";
     } else if(activeButton.id === "recipe_box"){
         inputLabel.innerHTML = "Recipe Name:";
     }
-    inputBox.value = "";
+    inputBox.value = ""; // clear input box
     // Reset results
     resetResults();
 }
@@ -170,8 +171,8 @@ function init() {
         // Prevent page from reloading
         e.preventDefault();
         // Perform functionality
-        resetResults();
-        document.getElementById("api_input").value = "";
+        resetResults(); // clear results box
+        document.getElementById("api_input").value = ""; // clear input box
     });
 }
 

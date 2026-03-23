@@ -56,20 +56,21 @@ export class Api {
                 })
                     .then(response => {
                         if (!response.ok) {
-                            this.responseData = null;
-                            throw new Error(`HTTP Error! status: ${response.status}`);
+                            this.responseData = null; // clear _responseData
+                            this._apiError = `HTTP Error! status: ${response.status}`; // set apiError
+                            throw new Error(`HTTP Error! status: ${response.status}`); // throw error
                         }
                         return response.json(); // cenvert responce to JSON
                     })
                     .then((data) => {
                         console.log(data);
                         if(data.length > 0){
-                            this.apiError = null;
+                            this.apiError = null; // clear apiError
                             this.responseData = data[0]; // update results section with api result here
                         }
                         else{
                             let errorString = "Error: No results Found.";
-                            console.error(errorString);
+                            console.error(errorString); // print error to console
                             this.apiError = errorString; // update results section with error message here
                         }
                     })
@@ -82,6 +83,7 @@ export class Api {
         }
         catch(error) {
             console.error(error);
+            this.apiError = `Error! ${error}`;
         }
     }
 }
