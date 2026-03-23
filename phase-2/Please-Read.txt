@@ -1,0 +1,9 @@
+Due to the api and api-manager in this phase being separated into 2 different files which require import/export statements, this phase needs to be run using a localhost server such as Laragon. Trying to run this phase as a local file will result in a CORS error due to browser security features blocking import/export statements from files.
+
+instructions:
+
+1. Open Laragon
+2. Click 'Root'
+3. Copy phase-2 files into root folder (C:\ProgramData\Laragon\www)
+4. Click 'Start All'
+5. Open browser got type the URL: http://localhost/phase-2/index.html
