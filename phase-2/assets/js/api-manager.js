@@ -9,17 +9,6 @@ const cocktailApi = new Api("Cocktail", "https://api.api-ninjas.com/v1/cocktail?
 const nullApi = new Api(); // default api with no name or url
 let selectedApi = nullApi;
 
-// const handler = {
-//     set: function (target, property, value){
-//         target[property] = value;
-//         if (target instanceof Api ){
-//             if (property === "responseData" && value !== null) {
-//                 target.returnResponseData()
-//             }
-//         }
-//         return true;
-//     }
-// };
 
 export function displayError(api = null){
     resetResults();
@@ -185,14 +174,5 @@ function init() {
         document.getElementById("api_input").value = "";
     });
 }
-
-// Placeholder function to be replaced by functionality later
-function pass(){
-    return true;
-}
-
-// async function asyncPass(){
-//     return true;
-// }
 
 window.onload= init;

@@ -3,7 +3,6 @@
 import {updateResults, displayError} from './api-manager.js';
 
 
-
 export class Api {
     constructor(name = null, baseURL = null, searchParameter = null, defaultSearch = null) {
         this.apiName = name;
@@ -12,8 +11,6 @@ export class Api {
         this.defaultSearch = defaultSearch;
         this._responseData = null;
         this._apiError = null;
-
-        // return new Proxy(this, handler);
     }
 
     get responseData(){
@@ -33,6 +30,7 @@ export class Api {
     get apiError(){
         return this._apiError;
     }
+
 
     set apiError(newValue){
         const oldValue = this._apiError;
@@ -71,11 +69,10 @@ export class Api {
                             console.error(errorString);
                             this.apiError = errorString; // update results section with error message here
                         }
-                        // return data;
                     })
                     .catch(error => {
                         let errorString = `Error with fetch operation: ${error}`;
-                        console.error(errorString);
+                        console.error(errorString); // print error to console
                         this.apiError = errorString; // update results section with error message here
                     });
             }
