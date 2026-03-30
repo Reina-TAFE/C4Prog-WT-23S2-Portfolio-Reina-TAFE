@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/NM-TAFE/civ-web-technologies-portfolio-phases#readme",
   "devDependencies": {
-    "tailwindcss": "^4.1.17"
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
   },
   "type": "module"
 }
