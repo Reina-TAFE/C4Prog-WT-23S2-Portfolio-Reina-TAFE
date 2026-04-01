@@ -38,6 +38,7 @@ export default defineConfig([
 
     {
         files: ["**/*.css"],
+        ignores: ["**/site.css"],
         plugins: {css,},
         language: "css/css",
         rules: {
