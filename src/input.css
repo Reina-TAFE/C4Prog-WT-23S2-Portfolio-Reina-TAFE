@@ -3,3 +3,4 @@
 @source "./index.html";
 @source "./phase-*/*.html";
 @source "./pages/**/*.html";
+@source "./assets/img/*.png"
